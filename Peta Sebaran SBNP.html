@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+    <head>
+            <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="PETA.css">
+    <title>Peta Sebaran Sarana Bantu Navigasi Penyeberangan</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="mapbox/mapbox-gl-generic-geocoder.css">
+        <style>
+        #map {
+            width: 1920px;
+            height: 1080px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div class="container">
+            <!--NAVIGATION BAR  -->
+            <div class="container-navbar">
+                  <ul class="ul-navbar">
+                   <li class="li-navbar">
+                      <a href="index.html" class="a-navbar">HOME</a>
+                      <li class="li-navbar">
+                       <a href="STRUKTUR ORGANISASI.html" class="a-navbar">STRUKTUR ORGANISASI</a>
+                      <li class="li-navbar">
+                       <a href="Peta Sebaran SBNP.html" class="a-navbar">PETA SEBARAN SBNP</a>
+                   </li>
+                  </ul>
+            </div>
+    
+    <div
+id="map">
+
+
+        
+  </div>
+
+
+      
+
+
+       <div
+id="c">
+
+
+       <div
+class="container">
+
+
+        
+  <div
+class="row">
+
+
+        
+  <div
+class="col
+text-center">
+
+        
+  </div>
+
+
+       </div>
+
+
+       </div>
+
+        <div id="map">
+            <nav id="menu"></nav>
+              <div id="distance" class="distance-container"></div>
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="mapbox/mapbox-gl-generic-geocoder.min.js"></script>
+        <script src="data/sbnp_penyeberangant_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [104.7992783835334,-2.37640770449461],
+ zoom: 5,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+    compact: false
+}));
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+
+map.on('click', 'lyr_sbnp_penyeberangant_1_0', function (e) {
+    var description = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['gid'] !== null ? autolinker.link(e.features[0].properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>namobj</strong><br />' + (e.features[0].properties['namobj'] !== null ? autolinker.link(e.features[0].properties['namobj'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">x</th>\
+                        <td>' + (e.features[0].properties['x'] !== null ? autolinker.link(e.features[0].properties['x'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">y</th>\
+                        <td>' + (e.features[0].properties['y'] !== null ? autolinker.link(e.features[0].properties['y'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['fcode'] !== null ? autolinker.link(e.features[0].properties['fcode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['srs_id'] !== null ? autolinker.link(e.features[0].properties['srs_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['lcode'] !== null ? autolinker.link(e.features[0].properties['lcode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">jenis_sbnp</th>\
+                        <td>' + (e.features[0].properties['jenis_sbnp'] !== null ? autolinker.link(e.features[0].properties['jenis_sbnp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">kondisi</th>\
+                        <td>' + (e.features[0].properties['kondisi'] !== null ? autolinker.link(e.features[0].properties['kondisi'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">status__op</th>\
+                        <td>' + (e.features[0].properties['status__op'] !== null ? autolinker.link(e.features[0].properties['status__op'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pengelola</th>\
+                        <td>' + (e.features[0].properties['pengelola'] !== null ? autolinker.link(e.features[0].properties['pengelola'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">tahun_angg</th>\
+                        <td>' + (e.features[0].properties['tahun_angg'] !== null ? autolinker.link(e.features[0].properties['tahun_angg'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">alokasi_an</th>\
+                        <td>' + (e.features[0].properties['alokasi_an'] !== null ? autolinker.link(e.features[0].properties['alokasi_an'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">wilayah</th>\
+                        <td>' + (e.features[0].properties['wilayah'] !== null ? autolinker.link(e.features[0].properties['wilayah'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['kd_prov'] !== null ? autolinker.link(e.features[0].properties['kd_prov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (e.features[0].properties['kd_kabkot'] !== null ? autolinker.link(e.features[0].properties['kd_kabkot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">prov</th>\
+                        <td>' + (e.features[0].properties['prov'] !== null ? autolinker.link(e.features[0].properties['prov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">kabkot</th>\
+                        <td>' + (e.features[0].properties['kabkot'] !== null ? autolinker.link(e.features[0].properties['kabkot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">km_sbnp</th>\
+                        <td>' + (e.features[0].properties['km_sbnp'] !== null ? autolinker.link(e.features[0].properties['km_sbnp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>'
+
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(description)
+        .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_sbnp_penyeberangant_1_0', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_sbnp_penyeberangant_1_0', function () {
+    map.getCanvas().style.cursor = '';
+});
+    var toggleableLayerIds = ['lyr_sbnp_penyeberangant_1_0', 'sbnp_penyeberangant','lyr_OpenStreetMap_0_0', 'OpenStreetMap'];
+
+    for (var i = 0; i < toggleableLayerIds.length; i=i+2) {
+        var id = toggleableLayerIds[i];
+        var layerName = toggleableLayerIds[i+1]
+
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'active';
+        link.layer = id;
+        link.textContent = layerName;
+
+        link.onclick = function (e) {
+            var clickedLayer = this.layer;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+            if (typeof visibility === 'undefined' || visibility == 'visible') {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+            }
+        };
+
+        var layers = document.getElementById('menu');
+        layers.appendChild(link);
+    }
+        var geocodeNominatimRequest = function(query, mapBounds, options) {
+        var params = { format: "json", q: query, limit: options.limit };
+        var urlParams = new URLSearchParams(Object.entries(params));
+
+        return fetch("http://nominatim.openstreetmap.org/search?" + urlParams)
+            .then(function(response) {
+                if(response.ok) {
+                    return response.json();
+                } else {
+                    return [];
+                }
+            }).then(function(json) {
+                return json.map(function(result) {
+                    return {
+                        name: result.display_name,
+                        lat: result.lat,
+                        lon: result.lon,
+                        bbox: [result.boundingbox[2], result.boundingbox[0],
+                               result.boundingbox[3], result.boundingbox[1]]
+                    };
+                });
+            });
+        };
+
+        map.addControl(new MapboxGenericGeocoder({}, geocodeNominatimRequest));
+</script>
+    </body>
+</html>
